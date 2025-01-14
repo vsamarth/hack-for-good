@@ -34,16 +34,15 @@ const signInSchema = z.object({
 });
 
 export const authConfig = {
+  trustHost: true,
   providers: [
     Credentials({
       credentials: { email: {}, password: {} },
       authorize: async (credentials) => {
         const validationResult = signInSchema.safeParse(credentials);
-        console.log("credentials", credentials)
         if (!validationResult.success) {
           throw new CredentialsSignin();
         }
-        console.log("validation passwed")
         const { email, password } = validationResult.data;
         const existingUser = await db.query.users.findFirst({
           where: (users, { eq }) => eq(users.email, email),

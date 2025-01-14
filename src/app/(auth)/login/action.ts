@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn } from "@/server/auth";
+import { signIn } from "@/lib/auth";
 import { CredentialsSignin } from "next-auth";
 
 export default async function action(_: unknown, formData: FormData) {

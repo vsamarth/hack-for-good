@@ -5,20 +5,16 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "check": "next lint && tsc --noEmit",
+    "lint": "prettier --check . && next lint && tsc --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:seed": "dotenvx run -- tsx src/server/db/seed.ts",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "dev": "next dev --turbo",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
-    "preview": "next build && next start",
+    "preview": "npm run build && npm run start",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
-    "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mdx}\" --cache"
+    "format": "prettier --write . --log-level warn"
   },
   "dependencies": {
     "@node-rs/argon2": "^2.0.2",
