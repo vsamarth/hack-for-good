@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault();
     // Add login logic here
     console.log('Login attempted with:', username, password);
-    router.push('/dashboard');
+    router.push('/resident-dashboard');
   };
 
   return (

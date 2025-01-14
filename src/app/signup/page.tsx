@@ -16,7 +16,7 @@ export default function Signup() {
     e.preventDefault();
     // Add signup logic here
     console.log('Signup attempted with:', { username, password, confirmPassword, userType });
-    router.push('/user-dashboard');
+    router.push('/resident-dashboard');
   };
 
   return (
