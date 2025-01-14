@@ -7,6 +7,7 @@ import {
   text,
   timestamp,
   varchar,
+  boolean,
 } from "drizzle-orm/pg-core";
 import { type AdapterAccount } from "next-auth/adapters";
 
@@ -127,3 +128,25 @@ export const verificationTokens = createTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 );
+
+export const resident = createTable("resident", {
+  id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
+  name: varchar("name", { length: 256 }),
+  email: varchar("email", { length: 256 }),
+  phone: varchar("phone", { length: 256 }),
+  address: varchar("address", { length: 256 }),
+  password: varchar("password", { length: 256 }),
+});
+
+export const vouchers = createTable("voucher", {
+  id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
+  voucherCode: varchar("voucher_code", { length: 256 }),
+  voucherValue: integer("voucher_value"),
+  residentId: integer("resident_id").references(() => resident.id),
+  expiryDate: timestamp("expiry_date", {
+    mode: "date",
+    withTimezone: true,
+  }),
+  usedStatus: boolean("used_status").default(false),
+});
+

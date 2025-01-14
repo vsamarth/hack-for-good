@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { ChoiceChip } from '@/components/choice-chip'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function Signup() {
