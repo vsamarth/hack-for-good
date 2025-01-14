@@ -2,18 +2,21 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { ChoiceChip } from '@/components/choice-chip'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function Signup() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [userType, setUserType] = useState('resident');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Add signup logic here
-    console.log('Signup attempted with:', username, password, confirmPassword);
-    router.push('/dashboard');
+    console.log('Signup attempted with:', { username, password, confirmPassword, userType });
+    router.push('/user-dashboard');
   };
 
   return (
@@ -21,6 +24,26 @@ export default function Signup() {
       <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-8 shadow-lg">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight">Create your account</h2>
+        </div>
+        <div className="flex space-x-4">
+            <Tabs>
+                <TabsList className="flex justify-center">
+                <TabsTrigger 
+                  value="resident" 
+                  className='bg-white text-gray-600 hover:bg-gray-100'
+                  onClick={() => setUserType('resident')}
+                >
+                  Resident
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="admin" 
+                  className='bg-white text-gray-600 hover:bg-gray-100  ml-2'
+                  onClick={() => setUserType('admin')}
+                >
+                  Admin
+                </TabsTrigger>
+                </TabsList>
+            </Tabs>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4 rounded-md">
@@ -66,6 +89,11 @@ export default function Signup() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                User Type
+              </label>
+            </div>
           </div>
 
           <div className="flex items-center justify-between">
@@ -89,3 +117,4 @@ export default function Signup() {
     </main>
   );
 }
+
