@@ -1,5 +1,6 @@
 "use client";
 
+import { Vouchers } from "@/components/vouchers";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -83,7 +84,7 @@ export default function Dashboard() {
         {activeTab === "vouchers" && (
           <div>
             <h1 className="text-2xl font-bold text-gray-800">Vouchers</h1>
-            {/* Add vouchers content here */}
+            <Vouchers />
           </div>
         )}
       </main>

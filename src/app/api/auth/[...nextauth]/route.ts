@@ -47,6 +47,7 @@ export async function getVouchers() {
 
 export async function GET(request: Request) {
   try {
+    console.log("GET request received");
     return new Response(JSON.stringify(vouchersMockData), {
       status: 200,
       headers: {
