@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { useActionState } from "react";
 import action from "./action";
 
-export default function Login() {
+export default function Signup() {
   const [serverError, formAction, isPending] = useActionState(
     action,
     undefined,
@@ -28,9 +28,9 @@ export default function Login() {
           <div className="w-full max-w-sm">
             <form className="flex flex-col gap-6" action={formAction}>
               <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-semibold">Sign in</h1>
+                <h1 className="text-2xl font-semibold">Sign up</h1>
                 <p className="text-balance text-sm text-neutral-500 dark:text-neutral-400">
-                  Enter your details below to continue to your account
+                  Enter your details below to create a new account
                 </p>
               </div>
               <div className="grid gap-6">
@@ -39,6 +39,14 @@ export default function Login() {
                     {serverError}
                   </p>
                 )}
+                <div className="grid gap-2">
+                  <Label htmlFor="firstName">First Name</Label>
+                  <Input id="firstName" name="firstName" type="text" required />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="lastName">Last Name</Label>
+                  <Input id="lastName" name="lastName" type="text" required />
+                </div>
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
                   <Input id="email" name="email" type="email" required />
@@ -57,12 +65,12 @@ export default function Login() {
                   className="mt-2 w-full"
                   disabled={isPending}
                 >
-                  Sign in
+                  Sign up
                 </Button>
                 <p className="text-center text-sm text-neutral-500 dark:text-neutral-400">
-                  Don't have an account?{" "}
-                  <a href="/signup" className="font-medium text-blue-600 hover:underline">
-                    Sign up
+                  Already have an account?{" "}
+                  <a href="/login" className="font-medium text-blue-600 hover:underline">
+                    Log in
                   </a>
                 </p>
               </div>

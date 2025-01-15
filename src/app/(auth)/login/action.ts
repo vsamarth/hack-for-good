@@ -2,13 +2,15 @@
 
 import { signIn } from "@/lib/auth";
 import { CredentialsSignin } from "next-auth";
-
+import bcrypt from "bcrypt";
 export default async function action(_: unknown, formData: FormData) {
   try {
     const data = Object.fromEntries(formData);
+    const { email, password } = data;
     await signIn("credentials", {
-      ...data,
-      redirectTo: "/dashboard",
+      email,
+      password,
+      redirectTo: "/resident-dashboard",
     });
   } catch (error) {
     console.error("sign in", error);
