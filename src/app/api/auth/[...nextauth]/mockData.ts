@@ -44,3 +44,45 @@ export const transactionHistoryMockData = [
     status: "completed",
   },
 ];
+
+export const inventoryMockData = [
+  {
+    id: 1,
+    name: "Item 1",
+    quantity: 10,
+  },
+  {
+    id: 2,
+    name: "Item 2",
+    quantity: 20,
+  },
+  {
+    id: 3,
+    name: "Item 3",
+    quantity: 30,
+  },
+];
+
+export const organizationMockData = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john.doe@example.com",
+    phone: "1234567890",
+    role: "admin",
+  },
+  {
+    id: 2,
+    name: "Jane Doe",
+    email: "jane.doe@example.com",
+    phone: "1234567890",
+    role: "resident",
+  },
+  {
+    id: 3,
+    name: "John Smith",
+    email: "john.smith@example.com",
+    phone: "1234567890",
+    role: "admin",
+  },
+];

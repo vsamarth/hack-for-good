@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import VoucherManagement from 'src/components/voucher-management'
+import { Inventory } from 'src/components/inventory'
+import { OrganizationManagement } from 'src/components/organization-management'
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -58,7 +60,7 @@ export default function AdminDashboard() {
         {activeTab === 'inventory' && (
           <div>
             <h1 className="text-2xl font-bold mb-4">Inventory Management</h1>
-            {/* Add inventory management content here */}
+            <Inventory />
           </div>
         )}
 
@@ -72,7 +74,7 @@ export default function AdminDashboard() {
         {activeTab === 'organization' && (
           <div>
             <h1 className="text-2xl font-bold mb-4">Organization Management</h1>
-            {/* Add organization management content here */}
+            <OrganizationManagement />
           </div>
         )}
       </main>

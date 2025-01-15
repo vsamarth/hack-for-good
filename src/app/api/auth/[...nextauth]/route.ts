@@ -2,6 +2,8 @@ import { handlers } from "@/lib/auth";
 import { vouchersMockData } from "./mockData";
 import { minimartPurchasesMockData } from "./mockData";
 import { transactionHistoryMockData } from "./mockData";
+import { inventoryMockData } from "./mockData";
+import { organizationMockData } from "./mockData";
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
@@ -24,6 +26,22 @@ export async function GET(request: Request) {
     } else if (url.pathname === '/api/auth/transaction-history') {
       // TODO: fetch transaction history from database
       return new Response(JSON.stringify(transactionHistoryMockData), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } else if (url.pathname === '/api/auth/inventory') {
+      // TODO: fetch inventory from database
+      return new Response(JSON.stringify(inventoryMockData), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } else if (url.pathname === '/api/auth/organization') {
+      // TODO: fetch organization from database
+      return new Response(JSON.stringify(organizationMockData), {
         status: 200,
         headers: {
           'Content-Type': 'application/json',

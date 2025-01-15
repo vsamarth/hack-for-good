@@ -1,0 +1,72 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+
+interface InventoryItem {
+  id: number
+  name: string
+  quantity: number
+}
+
+export function Inventory() {
+  const [inventory, setInventory] = useState<InventoryItem[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchInventory = async () => {
+      try {
+        const response = await fetch('/api/auth/inventory')
+        if (!response.ok) {
+          throw new Error('Failed to fetch inventory')
+        }
+        const data = await response.json()
+        setInventory(data)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch inventory')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchInventory()
+  }, [])
+
+  if (loading) {
+    return <div className="text-center">Loading inventory...</div>
+  }
+
+  if (error) {
+    return <div className="text-red-500">Error: {error}</div>
+  }
+
+  return (
+    <div className="grid gap-4 mt-4">
+      {inventory.map((item) => (
+        <div
+          key={item.id}
+          className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        >
+          <div className="flex justify-between items-center">
+            <div className="text-lg font-semibold text-gray-800">
+              {item.name}
+            </div>
+            <div className={`px-3 py-1 rounded-full text-sm ${
+              item.quantity > 20 ? 'bg-green-100 text-green-800' :
+              item.quantity > 10 ? 'bg-yellow-100 text-yellow-800' :
+              'bg-red-100 text-red-800'
+            }`}>
+              Stock: {item.quantity}
+            </div>
+          </div>
+        </div>
+      ))}
+      
+      {inventory.length === 0 && (
+        <div className="text-center text-gray-500">
+          No inventory items found
+        </div>
+      )}
+    </div>
+  )
+}
