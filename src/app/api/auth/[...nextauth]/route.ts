@@ -1,59 +1,42 @@
 import { handlers } from "@/lib/auth";
-
-export const vouchersMockData = [
-  {
-    id: 1,
-    voucherCode: "WELCOME2024",
-    voucherValue: 50,
-    expiryDate: "2025-01-01",
-    residentId: 1,
-    usedStatus: false
-  },
-  {
-    id: 2, 
-    voucherCode: "NEWYEAR24",
-    voucherValue: 100,
-    expiryDate: "2025-01-01",
-    residentId: 1,
-    usedStatus: false
-  },
-  {
-    id: 3,
-    voucherCode: "DISCOUNT50",
-    voucherValue: 25,
-    expiryDate: "2025-01-01",
-    residentId: 2,
-    usedStatus: true
-  }
-];
-
-export async function getVouchers() {
-  try {
-    return new Response(JSON.stringify(vouchersMockData), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  } catch (error) {
-    return new Response(JSON.stringify({ error: 'Failed to fetch vouchers' }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json', 
-      },
-    });
-  }
-}
-
+import { vouchersMockData } from "./mockData";
+import { minimartPurchasesMockData } from "./mockData";
+import { transactionHistoryMockData } from "./mockData";
 export async function GET(request: Request) {
   try {
-    console.log("GET request received");
-    return new Response(JSON.stringify(vouchersMockData), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const url = new URL(request.url);
+    if (url.pathname === '/api/auth/vouchers') {
+      // TODO: fetch vouchers from database
+      return new Response(JSON.stringify(vouchersMockData), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } else if (url.pathname === '/api/auth/minimart-purchases') {
+      // TODO: fetch minimart purchases from database
+      return new Response(JSON.stringify(minimartPurchasesMockData), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } else if (url.pathname === '/api/auth/transaction-history') {
+      // TODO: fetch transaction history from database
+      return new Response(JSON.stringify(transactionHistoryMockData), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } else {
+      return new Response(JSON.stringify({ error: 'Not Found' }), {
+        status: 404,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
   } catch (error) {
     return new Response(JSON.stringify({ error: 'Failed to fetch vouchers' }), {
       status: 500,

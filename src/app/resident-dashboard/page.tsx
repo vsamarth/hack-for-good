@@ -1,5 +1,7 @@
 "use client";
 
+import { MinimartPurchases } from "@/components/minimart-purchases";
+import { TransactionHistory } from "@/components/transaction-history";
 import { Vouchers } from "@/components/vouchers";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -59,7 +61,7 @@ export default function Dashboard() {
         {activeTab === "analytics" && (
           <div>
             <h1 className="text-2xl font-bold text-gray-800">Analytics</h1>
-            {/* Add analytics content here */}
+            <h2> Work in progress</h2>
           </div>
         )}
 
@@ -68,7 +70,7 @@ export default function Dashboard() {
             <h1 className="text-2xl font-bold text-gray-800">
               Transaction History
             </h1>
-            {/* Add transaction history content here */}
+            <TransactionHistory />
           </div>
         )}
 
@@ -77,7 +79,7 @@ export default function Dashboard() {
             <h1 className="text-2xl font-bold text-gray-800">
               Minimart Purchases
             </h1>
-            {/* Add minimart purchases content here */}
+            <MinimartPurchases  />
           </div>
         )}
 
