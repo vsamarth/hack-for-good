@@ -1,13 +1,22 @@
-import { handlers } from "@/lib/auth";
-import { vouchersMockData } from "./mockData";
 import { minimartPurchasesMockData } from "./mockData";
 import { transactionHistoryMockData } from "./mockData";
 import { inventoryMockData } from "./mockData";
 import { organizationMockData } from "./mockData";
-import { users, vouchers, VoucherStatus } from "@/lib/db/schema";
+import { inventory, users, vouchers, VoucherStatus } from "@/lib/db/schema";
 import { db } from "@/lib/db";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
+// import * as Minio from 'minio';
+
+// const minioClient = new Minio.Client({
+//   endPoint: 'localhost',
+//   port: 9000,
+//   useSSL: true,
+//   accessKey: '17drbuiFjSUl9ewdg5rp',
+//   secretKey: 'XVWnBYcEBibvQxXqmEdJRVOUhImynyUXOwJzKWot'
+// });
+
+// const BUCKET_NAME = 'hfg-trial';
 
 
 export async function POST(request: Request) {
@@ -26,6 +35,16 @@ export async function POST(request: Request) {
       });
       console.log(voucher);
       return new Response(JSON.stringify({ message: 'Voucher granted' }), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } else if (url.pathname === '/api/auth/add-item') {
+      const { itemName, itemDescription, itemImage, itemPrice, quantity } = await request.json();
+      const item = await db.insert(inventory).values({
+        itemName, itemDescription, itemImage, itemPrice, quantity });
+      return new Response(JSON.stringify({ message: 'Item added' }), {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
@@ -93,8 +112,8 @@ export async function GET(request: Request) {
         },
       });
     } else if (url.pathname === '/api/auth/inventory') {
-      // TODO: fetch inventory from database
-      return new Response(JSON.stringify(inventoryMockData), {
+      const inventory = await db.query.inventory.findMany();
+      return new Response(JSON.stringify(inventory), {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
