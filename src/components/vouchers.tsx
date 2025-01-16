@@ -5,10 +5,11 @@ import { Label } from './ui/label'
 
 interface Voucher {
   id: number
-  voucherCode: string
-  voucherValue: number
-  residentId: number
-  expiryDate: string
+  code: string
+  amount: number
+  issuedAt: string
+  expiresAt: string
+  usedAt: string
   usedStatus: boolean
 }
 
@@ -53,16 +54,16 @@ export function Vouchers() {
         >
           {/* Expiry date at top right */}
           <div className="absolute top-4 right-4 text-gray-500 text-sm">
-            Expires on {voucher.expiryDate}
+            Expires on {new Date(voucher.expiresAt).toLocaleDateString()}
           </div>
 
           {/* Main content */}
           <div className="flex flex-col items-center mt-10">
             <div className="text-lg font-semibold text-gray-800 mb-2">
-              {voucher.voucherCode}
+              {voucher.code}
             </div>
             <div className={`font-bold text-2xl mb-4 ${voucher.usedStatus ? 'text-red-600' : 'text-green-600'}`}>
-              ${voucher.voucherValue.toFixed(2)}
+              ${voucher.amount.toFixed(2)}
             </div>
           </div>
 
