@@ -7,7 +7,7 @@
     "build": "next build",
     "lint": "prettier --check . && next lint && tsc --noEmit",
     "db:generate": "drizzle-kit generate",
-    "db:seed": "dotenvx run -- tsx src/server/db/seed.ts",
+    "db:seed": "dotenvx run -- tsx src/lib/db/seed.ts",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",

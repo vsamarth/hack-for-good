@@ -21,13 +21,6 @@ export default async function action(_: unknown, formData: FormData) {
 
 
 
-    // Create new user
-    await db.insert(users).values({
-      email: email as string,
-      name: `${firstName} ${lastName}`,
-      passwordHash: password as string,
-    });
-
     // Sign in the newly created user
     await signIn("credentials", {
       email,
