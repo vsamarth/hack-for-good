@@ -44,9 +44,7 @@ export default async function Admin() {
               <TableCell className="text-sm text-zinc-600">
                 {user.email}
               </TableCell>
-              <TableCell>
-                8506 2380
-              </TableCell>
+              <TableCell>8506 2380</TableCell>
               <TableCell>
                 <Badge variant="outline">Active</Badge>
               </TableCell>

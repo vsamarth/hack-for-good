@@ -7,9 +7,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useActionState } from "react";
 import { signIn } from "./actions";
-import { type Metadata } from "next";
-
-
 
 export default function SignInForm() {
   const [serverError, formAction, isPending] = useActionState(

@@ -13,12 +13,10 @@ export default function AdminLayout({
     <SidebarProvider>
       <Sidebar>
         <SidebarContent>
-          <SidebarGroup>
-            
-          </SidebarGroup>
+          <SidebarGroup></SidebarGroup>
         </SidebarContent>
       </Sidebar>
-      <main className="p-8 w-full">{children}</main>
+      <main className="w-full p-8">{children}</main>
     </SidebarProvider>
   );
 }
