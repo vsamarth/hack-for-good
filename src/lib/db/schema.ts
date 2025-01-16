@@ -1,11 +1,21 @@
-import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgEnum,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+} from "drizzle-orm/pg-core";
+
+export const rolesEnum = pgEnum("roles", ["admin", "resident"]);
+export const userStatusEnum = pgEnum("user_status", ["active", "suspended"]);
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
-  role: text("role").notNull().default("resident"),
+  role: rolesEnum("role").default("resident"),
   phone: text("phone"),
 });
 

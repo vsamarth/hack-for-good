@@ -1,3 +1,4 @@
+import { Heading } from "@/components/heading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,8 +23,8 @@ export default async function Admin() {
   return (
     <div className="flex w-full flex-col gap-8">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold tracking-tight">Residents</h2>
-        <Button>
+        <Heading title="Residents" description="View and manage residents" />
+        <Button variant='secondary'>
           <Plus size={16} />
           Add new
         </Button>
