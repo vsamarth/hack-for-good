@@ -5,11 +5,11 @@ export const users = pgTable("users", {
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
-  role: text("role").notNull(),
-  phone: text("phone").notNull(),
+  role: text("role").notNull().default("resident"),
+  phone: text("phone"),
 });
 
-enum VoucherStatus {
+export enum VoucherStatus {
   PENDING = "pending",
   USED = "used",
   EXPIRED = "expired",
@@ -19,6 +19,7 @@ export const vouchers = pgTable("vouchers", {
   id: uuid("id").primaryKey().defaultRandom(),
   code: text("code").notNull().unique(),
   residentId: uuid("resident_id").references(() => users.id),
+  amount: integer("amount").notNull(),
   issuedAt: timestamp("issued_at").notNull().defaultNow(),
   expiresAt: timestamp("expires_at").notNull(),
   usedAt: timestamp("used_at"),

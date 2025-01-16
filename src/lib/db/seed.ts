@@ -18,6 +18,10 @@ async function main() {
         passwordHash: f.valuesFromArray({
           values: passwords,
         }),
+        role: f.valuesFromArray({
+          values: ["resident", "admin"],
+        }),
+        phone: f.phoneNumber(),
       },
     },
   }));
