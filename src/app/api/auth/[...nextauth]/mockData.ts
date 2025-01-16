@@ -50,16 +50,19 @@ export const inventoryMockData = [
     id: 1,
     name: "Item 1",
     quantity: 10,
+    price: 100,
   },
   {
     id: 2,
     name: "Item 2",
     quantity: 20,
+    price: 200,
   },
   {
     id: 3,
     name: "Item 3",
     quantity: 30,
+    price: 300,
   },
 ];
 
