@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useActionState } from "react";
-import action from "./action";
+import { signIn } from "./actions";
 
-export default function Signup() {
+export default function SignInForm() {
   const [serverError, formAction, isPending] = useActionState(
-    action,
+    signIn,
     undefined,
   );
   return (
@@ -28,9 +28,9 @@ export default function Signup() {
           <div className="w-full max-w-sm">
             <form className="flex flex-col gap-6" action={formAction}>
               <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-semibold">Sign up</h1>
+                <h1 className="text-2xl font-semibold">Sign in</h1>
                 <p className="text-balance text-sm text-neutral-500 dark:text-neutral-400">
-                  Enter your details below to create a new account
+                  Enter your details below to continue to your account
                 </p>
               </div>
               <div className="grid gap-6">
@@ -39,14 +39,6 @@ export default function Signup() {
                     {serverError}
                   </p>
                 )}
-                <div className="grid gap-2">
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" name="firstName" type="text" required />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" name="lastName" type="text" required />
-                </div>
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
                   <Input id="email" name="email" type="email" required />
@@ -65,14 +57,8 @@ export default function Signup() {
                   className="mt-2 w-full"
                   disabled={isPending}
                 >
-                  Sign up
+                  Sign in
                 </Button>
-                <p className="text-center text-sm text-neutral-500 dark:text-neutral-400">
-                  Already have an account?{" "}
-                  <a href="/login" className="font-medium text-blue-600 hover:underline">
-                    Log in
-                  </a>
-                </p>
               </div>
             </form>
           </div>

@@ -1,11 +1,24 @@
-import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { InferSelectModel } from "drizzle-orm";
+import {
+  integer,
+  pgEnum,
+  pgTable,
+  real,
+  text,
+  timestamp,
+  uuid,
+} from "drizzle-orm/pg-core";
+
+export const rolesEnum = pgEnum("roles", ["admin", "resident"]);
+export const userStatusEnum = pgEnum("user_status", ["active", "suspended"]);
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
-  role: text("role").notNull().default("resident"),
+  role: rolesEnum("role").default("resident"),
+  status: userStatusEnum("status").default("active"),
   phone: text("phone"),
 });
 
@@ -41,3 +54,14 @@ export const transactions = pgTable("transactions", {
   transactionDate: timestamp("transaction_date").notNull().defaultNow(),
   transactionAmount: integer("transaction_amount").notNull(),
 });
+
+export const products = pgTable("products", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  price: real("price").notNull(),
+  description: text("description"),
+  image: text("image"),
+});
+
+export type User = InferSelectModel<typeof users>;
+export type Product = InferSelectModel<typeof products>;

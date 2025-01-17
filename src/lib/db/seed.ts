@@ -1,34 +1,37 @@
-// path to a file with schema you want to reset
-import { hashSync } from "@node-rs/argon2";
+import { reset, seed } from "drizzle-seed";
 import { db } from ".";
 import * as schema from "./schema";
-import { reset, seed } from "drizzle-seed";
 
 async function main() {
-  const passwords = ["secret"].map((p) => hashSync(p));
-
   await reset(db, schema);
-  console.log("Resetting schema");
   await seed(db, {
     users: schema.users,
+    products: schema.products,
   }).refine((f) => ({
     users: {
       columns: {
         name: f.fullName(),
-        passwordHash: f.valuesFromArray({
-          values: passwords,
+        phone: f.phoneNumber({
+          template: "#### ####",
         }),
-        role: f.valuesFromArray({
-          values: ["resident", "admin"],
+      },
+    },
+    products: {
+      columns: {
+        price: f.number({
+          minValue: 4,
+          maxValue: 250,
         }),
-        phone: f.phoneNumber(),
       },
     },
   }));
 }
 
 void main()
-  .catch(console.error)
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  })
   .then(() => {
-    console.log("Done");
+    console.log("Database seeded");
   });

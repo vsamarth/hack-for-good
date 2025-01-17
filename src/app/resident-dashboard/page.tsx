@@ -79,7 +79,7 @@ export default function Dashboard() {
             <h1 className="text-2xl font-bold text-gray-800">
               Minimart Purchases
             </h1>
-            <MinimartPurchases  />
+            <MinimartPurchases />
           </div>
         )}
 

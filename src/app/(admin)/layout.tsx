@@ -1,8 +1,5 @@
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarProvider,
-} from "@/components/ui/sidebar";
+import AppSidebar from "@/components/dashboard-sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import type { ReactNode } from "react";
 
 export default function AdminLayout({
@@ -10,12 +7,8 @@ export default function AdminLayout({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <SidebarProvider>
-      <Sidebar>
-        <SidebarContent>
-
-        </SidebarContent>
-      </Sidebar>
-      <main className="p-8 w-full">{children}</main>
+      <AppSidebar />
+      <main className="w-full p-8">{children}</main>
     </SidebarProvider>
   );
 }
