@@ -1,6 +1,6 @@
 "use client";
 
-import { MinimartPurchases } from "@/components/minimart-purchases";
+import { Minimart } from "@/components/minimart";
 import { TransactionHistory } from "@/components/transaction-history";
 import { Vouchers } from "@/components/vouchers";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,7 @@ export default function Dashboard() {
   const navItems = [
     { id: "analytics", label: "Analytics" },
     { id: "transactions", label: "Transaction History" },
-    { id: "minimart", label: "Minimart Purchases" },
+    { id: "minimart", label: "Minimart" },
     { id: "vouchers", label: "Vouchers" },
   ];
 
@@ -76,10 +76,7 @@ export default function Dashboard() {
 
         {activeTab === "minimart" && (
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">
-              Minimart Purchases
-            </h1>
-            <MinimartPurchases />
+            <Minimart />
           </div>
         )}
 

@@ -1,8 +1,11 @@
 import { reset, seed } from "drizzle-seed";
 import { db } from ".";
 import * as schema from "./schema";
+import { hashSync } from "@node-rs/argon2"; 
 
 async function main() {
+
+  const passwords = ["secret"].map((p) => hashSync(p));
   await reset(db, schema);
   await seed(db, {
     users: schema.users,
@@ -11,6 +14,9 @@ async function main() {
     users: {
       columns: {
         name: f.fullName(),
+        passwordHash: f.valuesFromArray({
+          values: passwords,
+        }),
         phone: f.phoneNumber({
           template: "#### ####",
         }),

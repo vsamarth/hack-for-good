@@ -21,7 +21,7 @@ export function Vouchers() {
   useEffect(() => {
     const fetchVouchers = async () => {
       try {
-        const response = await fetch("/api/auth/vouchers");
+        const response = await fetch("/api/vouchers");
         if (!response.ok) {
           throw new Error("Failed to fetch vouchers");
         }

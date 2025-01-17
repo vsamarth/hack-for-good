@@ -21,7 +21,7 @@ export function AddItemModal({ isOpen, onClose, onAddItem }: AddItemModalProps) 
   const [quantity, setQuantity] = useState('')
   const [description, setDescription] = useState('')
   const handleSubmit = async (e: React.FormEvent) => {
-    const response = await fetch('/api/auth/add-item', {
+    const response = await fetch('/api/inventory', {
       method: 'POST',
       body: JSON.stringify({ itemName: name, itemDescription: description, itemImage: "imageurl", itemPrice: price, quantity: quantity })
     });

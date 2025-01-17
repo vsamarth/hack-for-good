@@ -45,8 +45,9 @@ export default function VoucherManagement() {
 
   useEffect(() => {
     const fetchResidentList = async () => {
-      const response = await fetch("/api/auth/residents");
+      const response = await fetch("/api/residents");
       const data = await response.json();
+      console.log(data);
       setResidentList(data);
     };
     fetchResidentList();
@@ -55,7 +56,7 @@ export default function VoucherManagement() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(userIdSelected, voucherCode, voucherValue, expiryDate);
-    const response = await fetch("/api/auth/grant-voucher", {
+    const response = await fetch("/api/vouchers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +81,7 @@ export default function VoucherManagement() {
   useEffect(() => {
     const fetchVouchers = async () => {
       try {
-        const response = await fetch("/api/auth/vouchers");
+        const response = await fetch("/api/vouchers");
         if (!response.ok) {
           throw new Error("Failed to fetch vouchers");
         }
