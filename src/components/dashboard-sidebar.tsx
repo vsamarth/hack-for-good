@@ -72,7 +72,7 @@ export default function AppSidebar() {
           <SidebarGroupLabel>People</SidebarGroupLabel>
           <SidebarMenu>
             {peopleItems.map((item) => {
-                const Icon = Icons[item.icon];
+              const Icon = Icons[item.icon];
               return (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton>
@@ -89,7 +89,7 @@ export default function AppSidebar() {
           <SidebarGroupLabel>Inventory</SidebarGroupLabel>
           <SidebarMenu>
             {inventoryItems.map((item) => {
-                const Icon = Icons[item.icon];
+              const Icon = Icons[item.icon];
               return (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton>

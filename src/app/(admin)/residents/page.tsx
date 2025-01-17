@@ -24,7 +24,7 @@ export default async function Admin() {
     <div className="flex w-full flex-col gap-8">
       <div className="flex items-center justify-between">
         <Heading title="Residents" description="View and manage residents" />
-        <Button variant='secondary'>
+        <Button variant="secondary">
           <Plus size={16} />
           Add new
         </Button>
