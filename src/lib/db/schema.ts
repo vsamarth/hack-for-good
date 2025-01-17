@@ -1,7 +1,9 @@
+import { InferSelectModel } from "drizzle-orm";
 import {
   integer,
   pgEnum,
   pgTable,
+  real,
   text,
   timestamp,
   uuid,
@@ -16,6 +18,7 @@ export const users = pgTable("users", {
   email: text("email").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
   role: rolesEnum("role").default("resident"),
+  status: userStatusEnum("status").default("active"),
   phone: text("phone"),
 });
 
@@ -51,3 +54,14 @@ export const transactions = pgTable("transactions", {
   transactionDate: timestamp("transaction_date").notNull().defaultNow(),
   transactionAmount: integer("transaction_amount").notNull(),
 });
+
+export const products = pgTable("products", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  price: real("price").notNull(),
+  description: text("description"),
+  image: text("image"),
+});
+
+export type User = InferSelectModel<typeof users>;
+export type Product = InferSelectModel<typeof products>;

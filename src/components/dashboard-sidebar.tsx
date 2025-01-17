@@ -15,6 +15,7 @@ import {
 import { GalleryVerticalEnd } from "lucide-react";
 import * as React from "react";
 import { Icons } from "./icons";
+import Link from "next/link";
 
 export const company = {
   name: "Acme Inc",
@@ -75,9 +76,12 @@ export default function AppSidebar() {
               const Icon = Icons[item.icon];
               return (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton>
-                    <Icon />
-                    {item.title}
+                  <SidebarMenuButton asChild>
+                    <Link href={item.url}>
+                      {" "}
+                      <Icon />
+                      {item.title}
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               );
@@ -92,9 +96,12 @@ export default function AppSidebar() {
               const Icon = Icons[item.icon];
               return (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton>
-                    <Icon />
-                    {item.title}
+                  <SidebarMenuButton asChild>
+                    <Link href={item.url}>
+                      {" "}
+                      <Icon />
+                      {item.title}
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               );

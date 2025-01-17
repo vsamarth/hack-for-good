@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Dashboard: Residents",
 };
 
-export default async function Residents() {
-  const users = await db.query.users.findMany();
+export default async function Products() {
+  const products = await db.query.products.findMany();
   return (
     <div className="container mx-auto grid gap-8">
-      <Heading title="Residents" description="View and manage residents" />
-      <DataTable columns={columns} data={users} />
+      <Heading title="Products" description="View and manage products" />
+      <DataTable columns={columns} data={products} />
     </div>
   );
 }
