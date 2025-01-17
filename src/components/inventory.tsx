@@ -34,6 +34,11 @@ export function Inventory() {
     fetchInventory();
   }, []);
 
+  const addItem = (newItem: Omit<InventoryItem, 'id'>) => {
+    const item = { ...newItem, id: Date.now().toString() }
+    setInventory([...inventory, item])
+  }
+
   if (loading) {
     return <div className="text-center">Loading inventory...</div>;
   }
@@ -76,3 +81,4 @@ export function Inventory() {
     </div>
   );
 }
+
